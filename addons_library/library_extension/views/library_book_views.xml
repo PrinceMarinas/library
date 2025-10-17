@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Add columns to the book list/tree view -->
+  <record id="view_library_book_tree_inherit_ext" model="ir.ui.view">
+    <field name="name">library.book.tree.inherit.ext</field>
+    <field name="model">library.book</field>
+    <field name="inherit_id" ref="library.view_library_book_tree"/>
+    <field name="arch" type="xml">
+      <!-- append author and categories columns after title (adjust position as you like) -->
+      <xpath expr="//tree/field[@name='title']" position="after">
+        <field name="author_id"/>
+        <field name="category_id"/>
+      </xpath>
+    </field>
+  </record>
+
+  <!-- Add fields to the book form view -->
+  <record id="view_library_book_form_inherit_ext" model="ir.ui.view">
+    <field name="name">library.book.form.inherit.ext</field>
+    <field name="model">library.book</field>
+    <field name="inherit_id" ref="library.view_library_book_form"/>
+    <field name="arch" type="xml">
+      <!-- place author field near existing fields. Example: after 'title' -->
+      <xpath expr="//form//field[@name='title']" position="after">
+        <field name="author_id"/>
+      </xpath>
+
+      <!-- add categories under basic information or near tags -->
+      <xpath expr="//form//sheet//group[last()]" position="inside">
+        <field name="category_id" widget="many2many_tags"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

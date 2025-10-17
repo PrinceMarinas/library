@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Menu item: put under Library. Adjust parent if needed. -->
+  <menuitem id="menu_library_book_category"
+            name="Book Category"
+            parent="library.menu_library"
+            sequence="20"/>
+
+  <record id="view_library_book_category_tree" model="ir.ui.view">
+    <field name="name">library.book.category.tree</field>
+    <field name="model">library.book.category</field>
+    <field name="arch" type="xml">
+      <tree string="Book Categories">
+        <field name="name"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_library_book_category_form" model="ir.ui.view">
+    <field name="name">library.book.category.form</field>
+    <field name="model">library.book.category</field>
+    <field name="arch" type="xml">
+      <form string="Book Category">
+        <sheet>
+          <group>
+            <field name="name"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action to show the category tree -->
+  <record id="action_library_book_category" model="ir.actions.act_window">
+    <field name="name">Book Categories</field>
+    <field name="res_model">library.book.category</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">Create book categories.</p>
+    </field>
+  </record>
+
+  <!-- Link menu to action -->
+  <record id="menu_library_book_category_action" model="ir.ui.menu">
+    <field name="id">menu_library_book_category</field>
+    <field name="action" ref="action_library_book_category"/>
+  </record>
+</odoo>
